@@ -5,6 +5,8 @@ import { Button, Input } from '../../../components'
 import { Category } from '../../../models'
 import { create, getAll, update } from '../../../services'
 import { routes } from '../../../routes'
+import { Alert } from '../../../components'
+import { ToastContainer } from 'react-toastify'
 
 const initialValues = {
     id: 0,
@@ -39,18 +41,20 @@ export function CategoryForm() {
         if (id != undefined) {
             try {
                 await update(`/categorias`, category, setCategory)
-                alert('Categoria atualizada com sucesso')
-                navigate(routes.categories)
+                Alert({ message: 'Categoria atualizada com sucesso' })
+
+                setTimeout(() => navigate(routes.categories), 3000)
             } catch (error: any) {
-                alert('Erro ao atualizar a Categoria')
+                Alert({ message: 'Erro ao atualizar a Categoria', type: 'error' })
             }
         } else {
             try {
                 await create(`/categorias`, category, setCategory)
-                alert('Categoria cadastrada com sucesso')
-                navigate(routes.categories)
+                Alert({ message: 'Categoria cadastrada com sucesso' })
+
+                setTimeout(() => navigate(routes.categories), 3000)
             } catch (error: any) {
-                alert('Erro ao cadastrar a Categoria')
+                Alert({ message: 'Erro ao cadastrar a Categoria', type: 'error' })
             }
         }
     }
@@ -68,6 +72,7 @@ export function CategoryForm() {
                         onChange={(e: ChangeEvent<HTMLInputElement>) => updateState(e)}
                     />
                 </div>
+                <ToastContainer />
 
                 <Button type="submit">{id !== undefined ? 'Editar' : 'Cadastrar'}</Button>
             </form>
