@@ -60,10 +60,10 @@ export function CategoryForm() {
     }
 
     return (
-        <div className="container flex flex-col mx-auto items-center">
+        <div className="flex flex-col justify-center h-screen items-center">
             <h1 className="text-4xl text-center my-8"></h1>
 
-            <form className="flex flex-col w-1/2 gap-4" onSubmit={handleSubmit}>
+            <form className="flex flex-col gap-4 w-1/3" onSubmit={handleSubmit}>
                 <div className="flex flex-col gap-2">
                     <Input
                         placeholder="Digite o nome da categoria"

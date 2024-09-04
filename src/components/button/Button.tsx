@@ -5,16 +5,14 @@ type ButtonProps = {
     type?: 'button' | 'reset' | 'submit'
     onClick?: MouseEventHandler<HTMLButtonElement>
     disabled?: boolean
-    color?: string
-    background?: string
+    styles?: string
     fullWidth?: boolean
 }
 
 export const Button: FC<ButtonProps> = ({
     type = 'button',
     disabled = false,
-    color = 'text-white',
-    background = 'bg-indigo-700',
+    styles = 'text-white bg-sky-700 hover:bg-sky-600',
     fullWidth = false,
     children,
     onClick,
@@ -24,13 +22,12 @@ export const Button: FC<ButtonProps> = ({
             type={type}
             disabled={disabled}
             onClick={onClick}
-            className={`${background} 
-                 bg-sky-700
+            className={`
                  py-1 px-5 
-                 ${color} 
                  rounded-md
-                 hover:bg-sky-600
-                 ${fullWidth && 'w-full'}`}
+                 ${fullWidth && 'w-full'}
+                 ${styles} 
+                 `}
         >
             {children}
         </button>

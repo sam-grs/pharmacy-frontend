@@ -18,10 +18,9 @@ export function ListCategories() {
     console.log('category', category)
 
     return (
-        <>
-            {/* ver se o loading vai funcionar */}
-            <div className="flex justify-center items-center h-full">
-                {category.length === 0 && (
+        <div className="h-screen py-20">
+            {category.length === 0 ? (
+                <div className="h-screen flex justify-center items-center">
                     <RotatingLines
                         visible={true}
                         width="96"
@@ -30,13 +29,14 @@ export function ListCategories() {
                         animationDuration="0.75"
                         ariaLabel="rotating-lines-loading"
                     />
-                )}
-            </div>
-            <div className="container mx-auto my-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {category.map((category: any) => (
-                    <CategoryCard key={category.id} category={category} />
-                ))}
-            </div>
-        </>
+                </div>
+            ) : (
+                <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {category.map((category: any) => (
+                        <CategoryCard key={category.id} category={category} />
+                    ))}
+                </div>
+            )}
+        </div>
     )
 }
