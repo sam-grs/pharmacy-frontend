@@ -5,6 +5,8 @@ import { Button, Input } from '../../../components'
 import { Category } from '../../../models'
 import { create, getAll, update } from '../../../services'
 import { routes } from '../../../routes'
+import { Alert } from '../../../components'
+import { ToastContainer } from 'react-toastify'
 
 const initialValues = {
     id: 0,
@@ -39,27 +41,29 @@ export function CategoryForm() {
         if (id != undefined) {
             try {
                 await update(`/categorias`, category, setCategory)
-                alert('Categoria atualizada com sucesso')
-                navigate(routes.categories)
+                Alert({ message: 'Categoria atualizada com sucesso' })
+
+                setTimeout(() => navigate(routes.categories), 3000)
             } catch (error: any) {
-                alert('Erro ao atualizar a Categoria')
+                Alert({ message: 'Erro ao atualizar a Categoria', type: 'error' })
             }
         } else {
             try {
                 await create(`/categorias`, category, setCategory)
-                alert('Categoria cadastrada com sucesso')
-                navigate(routes.categories)
+                Alert({ message: 'Categoria cadastrada com sucesso' })
+
+                setTimeout(() => navigate(routes.categories), 3000)
             } catch (error: any) {
-                alert('Erro ao cadastrar a Categoria')
+                Alert({ message: 'Erro ao cadastrar a Categoria', type: 'error' })
             }
         }
     }
 
     return (
-        <div className="container flex flex-col mx-auto items-center">
+        <div className="flex flex-col justify-center h-screen items-center">
             <h1 className="text-4xl text-center my-8"></h1>
 
-            <form className="flex flex-col w-1/2 gap-4" onSubmit={handleSubmit}>
+            <form className="flex flex-col gap-4 w-1/3" onSubmit={handleSubmit}>
                 <div className="flex flex-col gap-2">
                     <Input
                         placeholder="Digite o nome da categoria"
@@ -68,6 +72,7 @@ export function CategoryForm() {
                         onChange={(e: ChangeEvent<HTMLInputElement>) => updateState(e)}
                     />
                 </div>
+                <ToastContainer />
 
                 <Button type="submit">{id !== undefined ? 'Editar' : 'Cadastrar'}</Button>
             </form>
