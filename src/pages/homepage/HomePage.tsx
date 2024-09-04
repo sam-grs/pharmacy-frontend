@@ -11,7 +11,7 @@ export function HomePage() {
             style={{ backgroundImage: `url(${backgroundImage})` }}
         >
             <div className="flex flex-col gap-4 items-center justify-center py-4">
-                <h2 className="text-5xl font-bold">Seja Bem Vinde!</h2>
+                <h2 className="text-5xl font-bold text-white">Seja Bem Vinde!</h2>
                 <Link to={routes.categories}>
                     <Button>Entrar</Button>
                 </Link>
