@@ -1,2 +1,2 @@
 ## Link do site
-[Visite:](pharmacy-frontend-flame.vercel.app)
+[Site farmácia:](pharmacy-frontend-flame.vercel.app)
