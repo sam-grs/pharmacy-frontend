@@ -15,7 +15,6 @@ export function ListCategories() {
     async function findAll() {
         await getAll('/categorias', setCategory)
     }
-    console.log('category', category)
 
     return (
         <div className="h-screen py-20">
